@@ -560,7 +560,7 @@ footer.bottom .ai-line img{height:22px;width:auto;opacity:.85}
     $('btn-rec-back').classList.toggle('hidden', recFrom==null); if(recFrom!=null) $('btn-rec-back').textContent = '‹ '+fmt(U.rec_back||'Terug naar slide {n}',{n:recFrom+1});
     show('rec');
     const f=$('rec-player').querySelector('iframe');
-    if(!f){ recReady=false; recPending=t; $('rec-player').innerHTML='<iframe src="'+VORIGIN+'/video/'+esc(R.vimeo)+'?'+(R.hash?'h='+esc(R.hash)+'&':'')+'autoplay='+(t!=null?1:0)+'&dnt=1&title=0&byline=0&portrait=0#t='+Math.floor(t||0)+'s" allow="autoplay; fullscreen; picture-in-picture" allowfullscreen title="'+esc(R.title)+'"></iframe>'; }
+    if(!f){ recReady=false; recPending=t; $('rec-player').innerHTML='<iframe src="'+VORIGIN+'/video/'+esc(R.vimeo)+'?'+(R.hash?'h='+esc(R.hash)+'&':'')+'autoplay='+(t!=null?1:0)+'&dnt=1&title=0&byline=0&portrait=0#t='+Math.floor(t||0)+'s" allow="autoplay; fullscreen; picture-in-picture; encrypted-media" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen title="'+esc(R.title)+'"></iframe>'; }
     else if(t!=null){ if(recReady){ recPost('setCurrentTime',Math.floor(t)); recPost('play'); } else recPending=t; }
     if(t!=null) recMark(t);
   }
