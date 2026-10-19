@@ -8,7 +8,7 @@ for mf in sorted(glob.glob('media/manifests/*.json')):
         tmp = '/tmp/in.mp4'
         try:
             urllib.request.urlretrieve(url, tmp)
-            subprocess.run(['ffmpeg','-v','error','-y','-i',tmp,'-vf','scale=640:-2','-c:v','libx264','-preset','slow','-crf','27',
+            subprocess.run(['ffmpeg','-v','error','-y','-i',tmp,'-vf','scale=1280:720,crop=480:480:374:0','-c:v','libx264','-preset','slow','-crf','27',
                             '-c:a','aac','-b:a','96k','-movflags','+faststart',out], check=True)
             print('ok', out, os.path.getsize(out))
         except Exception as e:
