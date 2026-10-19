@@ -571,7 +571,7 @@ footer.bottom .ai-line img{height:22px;width:auto;opacity:.85}
     $('btn-next').querySelector('span').textContent = last ? U.to_quiz : U.next; $('btn-next').title = last ? U.to_quiz : U.next;
     dots();
     audio.pause(); audio.currentTime = 0; audioOk = true; $('audio-hint').classList.add('hidden');
-    { const nn=String(C.profiles ? S[i].id : i+1).padStart(2,'0'); if(AV) $('avatar-box').classList.remove('hidden'); audio.src = (AV && !(AV.skip||[]).includes(+nn)) ? AV.dir + '/slide-' + nn + '.mp4' : ((typeof AUDIO_DATA!=='undefined' && AUDIO_DATA[nn]) ? AUDIO_DATA[nn] : AUDIO_DIR + '/slide-' + nn + '.mp3'); audio.dataset.nn = nn; }
+    { const nn=String(C.profiles ? S[i].id : i+1).padStart(2,'0'); const useV = AV && (AV.only ? AV.only.includes(+nn) : !(AV.skip||[]).includes(+nn)); if(AV) $('avatar-box').classList.toggle('hidden', !useV); audio.src = useV ? AV.dir + '/slide-' + nn + '.mp4' : ((typeof AUDIO_DATA!=='undefined' && AUDIO_DATA[nn]) ? AUDIO_DATA[nn] : AUDIO_DIR + '/slide-' + nn + '.mp3'); audio.dataset.nn = nn; }
     audio.playbackRate = rate; setPlay(false); $('barfill').style.width='0'; $('time').textContent='0:00 / 0:00';
     if(play){ audio.play().catch(()=>{}); }
   }
